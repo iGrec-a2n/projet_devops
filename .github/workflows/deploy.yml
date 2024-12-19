@@ -1,0 +1,64 @@
+name: App Liste de courses
+
+on:
+  push:
+    branches:
+      - main
+    
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    # bdd (postgres) infos
+    services:
+      postgres:
+        image: postgres:latest
+
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install frontend dependencies
+        working-directory: ./Front
+        run: npm install
+
+      - name: Run frontend tests
+        working-directory: ./Front
+        run: npm test
+
+      - name: Install backend dependencies
+        working-directory: ./Back
+        run: composer install
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Add to known_hosts
+        run: ssh-keyscan -H your.server.com >> ~/.ssh/known_hosts
+
+      - name: Deploy application
+        run: |
+          ssh user@your.server.com << 'EOF'
+          cd /path/to/your/app
+          git pull origin main
+          npm install --prefix frontend
+          composer install --working-dir=backend
+          php artisan migrate --force
+          EOF
