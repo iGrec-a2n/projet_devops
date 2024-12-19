@@ -1,0 +1,44 @@
+services:
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: Front-React
+    ports:
+      - "3000:80"
+    networks:
+      - projet-network
+
+  back:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    container_name: Back-PhP
+    ports:
+      - "8000:80"
+    networks:
+      - projet-network
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    container_name: db_post
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: projet
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - projet-network
+
+networks:
+  projet-network:
+    driver: bridge
+
+volumes:
+  db_data:
