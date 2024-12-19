@@ -1,0 +1,9 @@
+name: Github_Actions
+
+on: push
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+      - run: node --version
+      - run: npm --version
