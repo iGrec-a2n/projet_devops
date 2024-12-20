@@ -1,7 +1,7 @@
 services:
   front:
     build:
-      context: ./front
+      context: ./Front
       dockerfile: Dockerfile
     container_name: Front-React
     ports:
@@ -11,7 +11,7 @@ services:
 
   back:
     build:
-      context: ./back
+      context: ./server
       dockerfile: Dockerfile
     container_name: Back-PhP
     ports:
