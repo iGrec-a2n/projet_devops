@@ -1,3 +1,6 @@
+CREATE USER shopping_user WITH PASSWORD 'password123';
+GRANT ALL PRIVILEGES ON DATABASE shopping_app TO shopping_user;
+
 CREATE TABLE IF NOT EXISTS shopping_items (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
