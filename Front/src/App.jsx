@@ -1,20 +1,49 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ShoppingItem from './components/ShoppingItem';
 import AddItemForm from './components/AddItemForm';
 
 const App = () => {
-  const [items, setItems] = useState([
-    { id: 1, name: 'Apples', quantity: 3 },
-    { id: 2, name: 'Bananas', quantity: 5 },
-  ]);
+  const [items, setItems] = useState([]);
+  const [newItem, setNewItem] = useState({name: '', quantity: 1})
 
-  const addItem = ({ name, quantity }) => {
-    const newItem = {
-      id: Date.now(),
-      name,
-      quantity,
-    };
-    setItems([...items, newItem]);
+  useEffect(() => {
+    fetch('http://localhost:8000/api/items')
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Erreur serveur ! status: ${res.status}`);
+      }
+      return res.json();
+    }).then((data) => {
+      setItems(data)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+  }, [])
+  
+
+  const addItem = () => {
+    fetch('http://localhost:8000/api/items', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', // Informer le backend qu'on envoie du JSON
+      },
+      body: JSON.stringify(newItem), // Convertit l'objet en chaîne JSON
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        alert(data.message); // Message de confirmation
+        setItems([...items, data.item]); // Ajoute le nouvel élément à la liste
+        setNewItem({ name: '', quantity: 1 }); // Réinitialise le formulaire
+      })
+      .catch((error) => {
+        console.error('Error adding item:', error);
+      });
   };
 
   const removeItem = (id) => {
