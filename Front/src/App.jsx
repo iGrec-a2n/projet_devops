@@ -7,7 +7,7 @@ const App = () => {
   const [newItem, setNewItem] = useState({name: '', quantity: 1})
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/items')
+    fetch('http://localhost:4000/api/items')
       .then((res) => {
         if (!res.ok) {
           throw new Error(`Erreur serveur ! status: ${res.status}`);
@@ -23,7 +23,7 @@ const App = () => {
   
 
   const addItem = () => {
-    fetch('http://localhost:8000/api/items', {
+    fetch('http://localhost:4000/api/items', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', // Informer le backend qu'on envoie du JSON
