@@ -19,8 +19,8 @@ jobs:
 
       - name: Pull Docker images
         run: |
-          docker pull ${{ secrets.DOCKER_USERNAME }}/shopping-app-frontend:latest
-          docker pull ${{ secrets.DOCKER_USERNAME }}/shopping-app-backend:latest
+          docker pull ${{ secrets.DOCKER_USERNAME }}/react-frontend:latest
+          docker pull ${{ secrets.DOCKER_USERNAME }}/express-backend:latest
       
       - name: Deploy with Docker Compose
         run: |
