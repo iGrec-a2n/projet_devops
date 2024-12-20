@@ -1,0 +1,8 @@
+{
+    "autoload": {
+        "psr-4": {
+            "config\\": "src/config/",
+            "controllers\\": "src/controllers/"
+        }
+    }
+}

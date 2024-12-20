@@ -9,6 +9,16 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/setupTests.ts',
   },
+   server: {
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000/',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
   "scripts": {
   "dev": "vite",
   "build": "vite build",
