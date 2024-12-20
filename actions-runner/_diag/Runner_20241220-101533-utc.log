@@ -1,0 +1,42 @@
+[2024-12-20 10:15:33Z INFO HostContext] No proxy settings were found based on environmental variables (http_proxy/https_proxy/HTTP_PROXY/HTTPS_PROXY)
+[2024-12-20 10:15:33Z INFO HostContext] Well known directory 'Bin': '/Users/ynda/Documents/Dev/Code/FS/projet_devops/actions-runner/bin'
+[2024-12-20 10:15:33Z INFO HostContext] Well known directory 'Root': '/Users/ynda/Documents/Dev/Code/FS/projet_devops/actions-runner'
+[2024-12-20 10:15:33Z INFO HostContext] Well known config file 'Credentials': '/Users/ynda/Documents/Dev/Code/FS/projet_devops/actions-runner/.credentials'
+[2024-12-20 10:15:33Z INFO HostContext] Well known directory 'Bin': '/Users/ynda/Documents/Dev/Code/FS/projet_devops/actions-runner/bin'
+[2024-12-20 10:15:33Z INFO HostContext] Well known directory 'Root': '/Users/ynda/Documents/Dev/Code/FS/projet_devops/actions-runner'
+[2024-12-20 10:15:33Z INFO HostContext] Well known config file 'Runner': '/Users/ynda/Documents/Dev/Code/FS/projet_devops/actions-runner/.runner'
+[2024-12-20 10:15:33Z INFO Listener] Runner is built for OSX (Arm64) - osx-arm64.
+[2024-12-20 10:15:33Z INFO Listener] RuntimeInformation: Darwin 23.6.0 Darwin Kernel Version 23.6.0: Mon Jul 29 21:14:21 PDT 2024; root:xnu-10063.141.2~1/RELEASE_ARM64_T8103.
+[2024-12-20 10:15:33Z INFO Listener] Version: 2.321.0
+[2024-12-20 10:15:33Z INFO Listener] Commit: e249007931b7c8e857797fa259c167f0bd4f997a
+[2024-12-20 10:15:33Z INFO Listener] Culture: fr-FR
+[2024-12-20 10:15:33Z INFO Listener] UI Culture: fr-FR
+[2024-12-20 10:15:33Z INFO HostContext] Well known directory 'Bin': '/Users/ynda/Documents/Dev/Code/FS/projet_devops/actions-runner/bin'
+[2024-12-20 10:15:33Z INFO HostContext] Well known directory 'Root': '/Users/ynda/Documents/Dev/Code/FS/projet_devops/actions-runner'
+[2024-12-20 10:15:33Z INFO Listener] Validating directory permissions for: '/Users/ynda/Documents/Dev/Code/FS/projet_devops/actions-runner'
+[2024-12-20 10:15:33Z ERR  Terminal] WRITE ERROR: An error occurred: Permission to read the directory contents is required for '/Users/ynda/Documents/Dev/Code/FS/projet_devops/actions-runner' and each directory up the hierarchy. Access to the path '/Users/ynda/Documents/Dev/Code/FS/projet_devops' is denied.
+[2024-12-20 10:15:33Z ERR  Listener] System.UnauthorizedAccessException: Permission to read the directory contents is required for '/Users/ynda/Documents/Dev/Code/FS/projet_devops/actions-runner' and each directory up the hierarchy. Access to the path '/Users/ynda/Documents/Dev/Code/FS/projet_devops' is denied.
+ ---> System.UnauthorizedAccessException: Access to the path '/Users/ynda/Documents/Dev/Code/FS/projet_devops' is denied.
+ ---> System.IO.IOException: Operation not permitted
+   --- End of inner exception stack trace ---
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserEntries(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at GitHub.Runner.Sdk.IOUtil.ValidateExecutePermission(String directory)
+   --- End of inner exception stack trace ---
+   at GitHub.Runner.Sdk.IOUtil.ValidateExecutePermission(String directory)
+   at GitHub.Runner.Listener.Program.MainAsync(IHostContext context, String[] args)
+[2024-12-20 10:15:33Z ERR  Listener] #####################################################
+[2024-12-20 10:15:33Z ERR  Listener] System.UnauthorizedAccessException: Access to the path '/Users/ynda/Documents/Dev/Code/FS/projet_devops' is denied.
+ ---> System.IO.IOException: Operation not permitted
+   --- End of inner exception stack trace ---
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserEntries(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at GitHub.Runner.Sdk.IOUtil.ValidateExecutePermission(String directory)
+[2024-12-20 10:15:33Z ERR  Listener] #####################################################
+[2024-12-20 10:15:33Z ERR  Listener] System.IO.IOException: Operation not permitted
